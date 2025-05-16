@@ -36,7 +36,7 @@
                         type="password"
                         name="senha"
                         class="input bg-gray-200 text-gray-600"
-                        placeholder="Password" />
+                        placeholder="Digite sua senha" />
                     <?php if (isset($validacoes['senha'])) : ?>
                         <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
                     <?php endif ?>

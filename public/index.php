@@ -1,11 +1,12 @@
 <?php
-require_once "../models/Usuario.php";
+require "../Core/helpers.php";
+
+spl_autoload_register(function($class) {
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require base_path("{$class}.php");
+});
 
 session_start();
 
-require_once "../Flash.php";
-require_once "../helpers.php";
-require_once "../database.php";
-require_once "../Validacao.php";
-require_once "../routes.php";
+require_once base_path("/config/routes.php");
 

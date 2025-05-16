@@ -1,6 +1,10 @@
 <?php
 
-class DB {
+namespace Core;
+
+use PDO;
+
+class Database {
 
     private $connect;
 
@@ -34,4 +38,3 @@ class DB {
     }
 }
 
-$DB = new DB(config('database'));

@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class Validacao {
     public $validacoes = [];
 
@@ -34,7 +36,7 @@ class Validacao {
             return;
         }
 
-        $db = new DB(config('database'));
+        $db = new Database(config('database'));
 
         $resultado = $db->query(
             query: "SELECT * FROM $tabela WHERE $campo = :valor",
@@ -43,7 +45,7 @@ class Validacao {
         )->fetch();
 
         if ($resultado) {
-            $this->validacoes[] = "O campo $campo já está sendo utilizado;";
+            $this->addError($campo ,"O campo $campo já está sendo utilizado");
         }
     }
 

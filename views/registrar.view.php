@@ -60,10 +60,6 @@
                         class="input bg-gray-200 text-gray-600"
                         placeholder="Confirme seu e-mail"
                         value="<?= old('email_confirmacao') ?>" />
-                    <?php if (isset($validacoes['email_confirmacao'])) : ?>
-                        <div class="label text-xs text-error"><?= $validacoes['email_confirmacao'][0] ?>
-                        </div>
-                    <?php endif ?>
 
                     <label class="label">Password</label>
                     <input

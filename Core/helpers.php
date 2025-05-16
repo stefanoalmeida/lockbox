@@ -1,10 +1,14 @@
 <?php
 
+function base_path($path) {
+    return __DIR__ . "/../" . $path;
+}
+
 function view($view, $data = []) {
     foreach ($data as $key => $value) {
         $$key = $value;
     }
-    require_once "views/template/app.php";
+    require_once base_path("views/template/app.php");
 }
 
 function abort($code)
@@ -16,11 +20,11 @@ function abort($code)
 
 function flash() 
 {
-    return new Flash();
+    return new \Core\Flash();
 }
 
 function config($chave = null) {
-    $config = require "config.php";
+    $config = require base_path("config/config.php");
 
     if (strlen($chave) > 0) {
         return $config[$chave];
