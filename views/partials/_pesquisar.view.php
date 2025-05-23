@@ -1,10 +1,8 @@
-<div class="flex space-x-4 w-full">
+<div class="flex space-x-4 items-center w-full">
     <form action="/dashboard" class="w-full">
-        <input
-            type="text"
-            name="pesquisar"
-            placeholder="Pesquisar notas..."
-            class="input bg-gray-200 text-gray-600 w-full" />
+        <fieldset class="fieldset">
+            <input type="text" name="pesquisar" class="input w-full" placeholder="Pesquisar notas..." />
+        </fieldset>
     </form>
     <a href="/notas/criar" class="btn btn-neutral">+ Item</a>
 </div>

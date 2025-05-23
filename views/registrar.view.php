@@ -18,17 +18,7 @@
                 ?>
                 <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 bg-white">
                     <legend class="text-black text-2xl">Registrar</legend>
-
-                    <?php if ($mensagem = flash()->get('mensagem')) : ?>
-                        <div role="alert" class="alert alert-success">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span><?= $mensagem ?></span>
-                        </div>
-                    <?php endif ?>
-
-
+                    <?php require base_path('views/partials/_mensagem.view.php') ?>
                     <label class="label">Nome</label>
                     <input
                         type="text"
