@@ -10,6 +10,8 @@ class DashboardController
             return header('login');
         }
 
-        echo "Estou logado " . auth()->nome . "!";
+        return view('dashboard', [
+            'user' => auth()
+        ]);
     }
 }

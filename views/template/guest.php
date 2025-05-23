@@ -14,15 +14,7 @@
 </head>
 
 <body>
-    <div class="mx-auto max-w-screen-lg flex flex-col h-screen">
-        <?php require base_path('views/partials/_navbar.view.php') ?>
-
-        <?php require base_path('views/partials/_pesquisar.view.php') ?>
-
-        <div class="flex flex-grow py-6">
-            <?php require_once base_path("views/{$view}.view.php") ?>
-        </div>
-    </div>
+    <?php require_once "../views/{$view}.view.php"; ?>
 </body>
 
 </html>
