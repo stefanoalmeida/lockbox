@@ -1,7 +1,14 @@
 <?php
 
+use Core\Request;
+
 function base_path($path) {
     return __DIR__ . "/../" . $path;
+}
+
+function redirect($uri)
+{
+    return header('Location:'. $uri);
 }
 
 function view($view, $data = [], $template = 'app') {
@@ -49,4 +56,8 @@ function old($campo) {
     }
 
     return '';
+}
+
+function request() {
+    return new Request;
 }

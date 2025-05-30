@@ -37,6 +37,6 @@ class RegisterController
         );
 
         flash()->push('mensagem', "Registrado com sucesso!");
-        return header("location: /registrar");
+        return redirect("/registrar");
     }
 }

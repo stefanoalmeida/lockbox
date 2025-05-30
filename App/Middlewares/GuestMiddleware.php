@@ -7,7 +7,7 @@ class GuestMiddleware
     public function handle() 
     {
         if (auth()) {
-            return header('Location: /dashboard');
+            return redirect('/notas');
         }
     }
 }

@@ -7,7 +7,7 @@ class AuthMiddleware
     public function handle() 
     {
         if (!auth()) {
-            return header('Location: /login');
+            return redirect('/login');
         }
     }
 }

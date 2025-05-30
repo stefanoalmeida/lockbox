@@ -1,5 +1,5 @@
 <div class="flex space-x-4 items-center w-full">
-    <form action="/dashboard" class="w-full">
+    <form action="/notas" class="w-full">
         <label class="input">
             <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <g
@@ -17,7 +17,7 @@
             name="pesquisar" 
             type="search" 
             placeholder="Pesquise suas notas no LockBox" 
-            value="<?= isset($_GET['pesquisar']) ? $_GET['pesquisar'] : ""?>"
+            value="<?= request()->get('pesquisar', '') ?>"
             />
         </label>
         <a href="/notas/criar" class="btn btn-neutral">+ Item</a>

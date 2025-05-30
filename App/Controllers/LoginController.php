@@ -42,6 +42,6 @@ class LoginController
 
         $_SESSION['auth'] = $usuario;
         flash()->push('mensagem', "Seja bem vindo {$usuario->nome}!");
-        return header('Location: /dashboard');
+        return redirect('/notas');
     }
 }

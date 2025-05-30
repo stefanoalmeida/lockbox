@@ -1,14 +1,15 @@
 <?php
 
 use Core\Route;
+use App\Middlewares\AuthMiddleware;
 use App\Controllers\IndexController;
 use App\Controllers\LoginController;
+use App\Middlewares\GuestMiddleware;
 use App\Controllers\LogoutController;
 use App\Controllers\RegisterController;
-use App\Controllers\DashboardController;
 use App\Controllers\Notas\CriarController;
-use App\Middlewares\AuthMiddleware;
-use App\Middlewares\GuestMiddleware;
+use App\Controllers\Notas\AtualizarController;
+use App\Controllers\Notas\IndexController as NotasIndexController;
 
 (new Route())
     ->get('/', IndexController::class, GuestMiddleware::class)
@@ -18,8 +19,9 @@ use App\Middlewares\GuestMiddleware;
     ->post('/registrar', [RegisterController::class, 'register'], GuestMiddleware::class)
 
 
-    ->get('/dashboard', DashboardController::class, AuthMiddleware::class)
+    ->get('/logout', LogoutController::class, AuthMiddleware::class)
+    ->get('/notas', NotasIndexController::class, AuthMiddleware::class)
     ->get('/notas/criar', [CriarController::class, 'index'], AuthMiddleware::class)
     ->post('/notas/criar', [CriarController::class, 'store'], AuthMiddleware::class)
-    ->get('/logout', LogoutController::class, AuthMiddleware::class)
+    ->put('/nota', AtualizarController::class, AuthMiddleware::class)
     ->run();

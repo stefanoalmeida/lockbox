@@ -38,7 +38,7 @@ class CriarController
         );
 
         flash()->push('mensagem', "Nota registrada com sucesso!");
-        return header("location: /notas/criar");
+        return redirect("/notas/criar");
     }
 
 }
