@@ -31,10 +31,14 @@
                 </div>
             <?php endif ?>
         </fieldset>
-
-        <div class="flex justify-between items-center">
-            <button class="btn btn-error">Deletar</button>
-            <button class="btn btn-primary" type="submit" form="form-atualizacao">Atualizar</button>
-        </div>
     </form>
+
+    <div class="flex justify-between items-center">
+        <form action="/nota" method="POST">
+            <input type="hidden" name="__method" value="DELETE">
+            <input type="hidden" name="id" value="<?= $notaSelecionada->id ?>">
+            <button class="btn btn-error" type="submit">Deletar</button>
+        </form>
+        <button class="btn btn-primary" type="submit" form="form-atualizacao">Atualizar</button>
+    </div>
 </div>

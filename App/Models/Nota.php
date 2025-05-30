@@ -37,4 +37,30 @@ class Nota
                 )->fetchAll();
         };
     }
+
+    public static function update ($id, $titulo, $nota)
+    {
+        $db = new Database(config('database'));
+
+        $db->query(
+            query: "UPDATE notas SET titulo = :titulo, nota = :nota WHERE id = :id",
+            params: [
+                'id' => $id,
+                'titulo' => $titulo,
+                'nota' => $nota
+            ]
+        );
+    }
+
+    public static function delete($id)
+    {
+        $db = new Database(config('database'));
+
+        $db->query(
+            query: "DELETE FROM notas WHERE id = :id",
+            params: [
+                'id' => $id
+            ]
+        );
+    }
 }

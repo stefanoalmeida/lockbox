@@ -40,9 +40,16 @@ class Route
         return $this;
     }
 
-     public function put($uri, $controller, $middleware = null)
+    public function put($uri, $controller, $middleware = null)
     {
         $this->addRoute('PUT', $uri, $controller, $middleware);
+
+        return $this;
+    }
+
+    public function delete($uri, $controller, $middleware = null)
+    {
+        $this->addRoute('DELETE', $uri, $controller, $middleware);
 
         return $this;
     }
