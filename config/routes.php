@@ -10,6 +10,7 @@ use App\Controllers\RegisterController;
 use App\Controllers\Notas\CriarController;
 use App\Controllers\Notas\DeletarController;
 use App\Controllers\Notas\AtualizarController;
+use App\Controllers\Notas\VisualizarController;
 use App\Controllers\Notas\IndexController as NotasIndexController;
 
 (new Route())
@@ -26,4 +27,9 @@ use App\Controllers\Notas\IndexController as NotasIndexController;
     ->post('/notas/criar', [CriarController::class, 'store'], AuthMiddleware::class)
     ->put('/nota', AtualizarController::class, AuthMiddleware::class)
     ->delete('/nota', DeletarController::class, AuthMiddleware::class)
+
+    ->get('/confirmar', [VisualizarController::class, 'confirmar'], AuthMiddleware::class)
+    ->post('/mostrar', [VisualizarController::class, 'mostrar'], AuthMiddleware::class)
+    ->get('/esconder', [VisualizarController::class, 'esconder'], AuthMiddleware::class)
+
     ->run();

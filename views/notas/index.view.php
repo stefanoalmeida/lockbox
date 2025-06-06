@@ -25,7 +25,12 @@
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Sua nota</legend>
-            <textarea class="textarea h-24 w-full" name="nota" placeholder=""><?= $notaSelecionada->nota ?></textarea>
+            <textarea
+                <?php if (!session()->get('mostrar')) : ?>
+                disabled
+                <?php endif ?>
+                class="textarea h-24 w-full" name="nota" placeholder=""><?= $notaSelecionada->nota() ?>
+            </textarea>
             <?php if (isset($validacoes['nota'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?>
                 </div>

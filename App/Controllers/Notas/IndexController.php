@@ -9,7 +9,7 @@ class IndexController
     public function __invoke()
     {
         $pesquisar = request()->get('pesquisar');
-        
+
         $notas = Nota::all($pesquisar);
 
         $notaSelecionada = $this->getNotaSlecionada($notas);
