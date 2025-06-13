@@ -7,10 +7,10 @@
 
         <legend class="fieldset-legend">Senha</legend>
         <input type="password" name="senha" class="input w-full" />
-        <?php if (isset($validacoes['senha'])) : ?>
+        <?php if (isset($validacoes['senha'])) { ?>
             <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?>
             </div>
-        <?php endif ?>
+        <?php } ?>
 
         <button class="btn btn-primary">Abrir minhas notas</button>
     </form>

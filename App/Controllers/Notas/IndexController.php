@@ -14,21 +14,22 @@ class IndexController
 
         $notaSelecionada = $this->getNotaSlecionada($notas);
 
-        if (!$notaSelecionada) {
+        if (! $notaSelecionada) {
             return view('notas/nao-encontrada');
         }
 
         return view('notas/index', [
             'notas' => $notas,
-            'notaSelecionada' => $notaSelecionada
+            'notaSelecionada' => $notaSelecionada,
         ]);
     }
 
     private function getNotaSlecionada($notas)
     {
-        $id = request()->get('id', sizeof($notas) > 0 ? $notas[0]->id : null);
+        $id = request()->get('id', count($notas) > 0 ? $notas[0]->id : null);
 
-        $filtro = array_filter($notas, fn($n) => $n->id == $id);
+        $filtro = array_filter($notas, fn ($n) => $n->id == $id);
+
         return array_pop($filtro);
     }
 }

@@ -12,7 +12,7 @@ class Route
             $data = [
                 'class' => $controller,
                 'method' => '__invoke',
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
@@ -20,7 +20,7 @@ class Route
             $data = [
                 'class' => $controller[0],
                 'method' => $controller[1],
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
         $this->routes[$httpMethod][$uri] = $data;
@@ -56,7 +56,7 @@ class Route
 
     public function run()
     {
-        $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $httpMethod = request()->post('__method', $_SERVER['REQUEST_METHOD']);
 
         if (! isset($this->routes[$httpMethod][$uri])) {

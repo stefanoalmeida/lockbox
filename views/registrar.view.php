@@ -26,10 +26,10 @@
                         class="input bg-gray-200 text-gray-600"
                         placeholder="Digite seu nome"
                         value="<?= old('nome') ?>" />
-                    <?php if (isset($validacoes['nome'])) : ?>
+                    <?php if (isset($validacoes['nome'])) { ?>
                         <div class="label text-xs text-error"><?= $validacoes['nome'][0] ?>
                         </div>
-                    <?php endif ?>
+                    <?php } ?>
 
                     <label class="label">Email</label>
                     <input
@@ -38,10 +38,10 @@
                         class="input bg-gray-200 text-gray-600"
                         placeholder="Digite seu melhor e-mail"
                         value="<?= old('email') ?>" />
-                    <?php if (isset($validacoes['email'])) : ?>
+                    <?php if (isset($validacoes['email'])) { ?>
                         <div class="label text-xs text-error"><?= $validacoes['email'][0] ?>
                         </div>
-                    <?php endif ?>
+                    <?php } ?>
 
                     <label class="label">Confirmar e-mail</label>
                     <input
@@ -58,10 +58,10 @@
                         class="input bg-gray-200 text-gray-600"
                         placeholder="Digite sua senha"
                         value="<?= old('senha') ?>" />
-                    <?php if (isset($validacoes['senha'])) : ?>
+                    <?php if (isset($validacoes['senha'])) { ?>
                         <div class="label text-xs text-error"><?= str_replace('O', 'A', $validacoes['senha'][0]) ?>
                         </div>
-                    <?php endif ?>
+                    <?php } ?>
 
                     <button class="btn btn-neutral mt-4">Registrar</button>
                     <a href="/login" class="btn btn-link">Já tenho uma conta</a>

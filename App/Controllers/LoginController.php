@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Usuario;
 use Core\Database;
 use Core\Validacao;
-use App\Models\Usuario;
 
 class LoginController
 {
@@ -20,7 +20,7 @@ class LoginController
 
         $validacao = Validacao::validar([
             'email' => ['required', 'email'],
-            'senha' => ['required']
+            'senha' => ['required'],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
@@ -30,18 +30,20 @@ class LoginController
         $DB = new Database(config('database'));
 
         $usuario = $DB->query(
-            query: "SELECT * FROM usuarios WHERE email = :email",
+            query: 'SELECT * FROM usuarios WHERE email = :email',
             class: Usuario::class,
             params: compact('email')
         )->fetch();
 
-        if (!($usuario && password_verify($senha, $usuario->senha))) {
+        if (! ($usuario && password_verify($senha, $usuario->senha))) {
             flash()->push('validacoes', ['email' => ['Usuário ou senha inválidos!']]);
+
             return view('login', template: 'guest');
         }
 
         session()->set('auth', $usuario);
         flash()->push('mensagem', "Seja bem vindo {$usuario->nome}!");
+
         return redirect('/notas');
     }
 }

@@ -1,11 +1,12 @@
 <div class="bg-base-300 rounded-l-box w-56 flex flex-col text-center">
-    <?php foreach ($notas as $key => $nota) : ?>
+    <?php foreach ($notas as $key => $nota) { ?>
         <a href="/notas?id=<?= $nota->id ?><?= request()->get('pesquisar', '', '&pesquisar=') ?>" class="w-full p-2 cursor-pointer hover:bg-base-200
-        <?php if ($key == 0): ?> rounded-tl-box <?php endif ?>
-        <?php if ($nota->id == $notaSelecionada->id): ?> bg-base-200 <?php endif ?>">
-            <?= $nota->titulo ?>
+        <?php if ($key == 0) { ?> rounded-tl-box <?php } ?>
+        <?php if ($nota->id == $notaSelecionada->id) { ?> bg-base-200 <?php } ?>">
+            <?= $nota->titulo ?> <br>
+            <span class="text-xs"><?= $nota->dataCriacao()->locale('pt-BR')->diffForHumans() ?></span>
         </a>
-    <?php endforeach ?>
+    <?php } ?>
 </div>
 <div class="bg-base-200 rounded-r-box w-full p-10 flex flex-col space-y-6">
     <form action="/nota" method="POST" id="form-atualizacao">
@@ -17,24 +18,24 @@
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Título</legend>
             <input type="text" name="titulo" class="input w-full" placeholder="Digite o seu título" value="<?= $notaSelecionada->titulo ?>" />
-            <?php if (isset($validacoes['titulo'])) : ?>
+            <?php if (isset($validacoes['titulo'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['titulo'][0] ?>
                 </div>
-            <?php endif ?>
+            <?php } ?>
         </fieldset>
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">Sua nota</legend>
             <textarea
-                <?php if (!session()->get('mostrar')) : ?>
+                <?php if (! session()->get('mostrar')) { ?>
                 disabled
-                <?php endif ?>
+                <?php } ?>
                 class="textarea h-24 w-full" name="nota" placeholder=""><?= $notaSelecionada->nota() ?>
             </textarea>
-            <?php if (isset($validacoes['nota'])) : ?>
+            <?php if (isset($validacoes['nota'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?>
                 </div>
-            <?php endif ?>
+            <?php } ?>
         </fieldset>
     </form>
 

@@ -2,16 +2,32 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Core\Database;
 
 class Nota
 {
     public $id;
+
     public $usuario_id;
+
     public $titulo;
+
     public $nota;
+
     public $data_criacao;
+
     public $data_atualizacao;
+
+    public function dataCriacao()
+    {
+        return Carbon::parse($this->data_criacao);
+    }
+
+    public function dataAtualizacao()
+    {
+        return Carbon::parse($this->data_atualizacao);
+    }
 
     public function nota()
     {
@@ -30,9 +46,9 @@ class Nota
                 $db->query(
                     // Trecho do código feito em aula que não funcionou (testar novamente)
                     // $db->query(
-                    // query: "SELECT * FROM notas WHERE usuario_id = :usuario_id" . 
+                    // query: "SELECT * FROM notas WHERE usuario_id = :usuario_id" .
                     // ($pesquisar ? "AND titulo LIKE :pesquisar": null),
-                    query: "SELECT * FROM notas WHERE usuario_id = :usuario_id AND titulo LIKE :pesquisar",
+                    query: 'SELECT * FROM notas WHERE usuario_id = :usuario_id AND titulo LIKE :pesquisar',
                     class: self::class,
                     params: array_merge(['usuario_id' => auth()->id], $pesquisar ? ['pesquisar' => "%$pesquisar%"] : [])
 
@@ -40,11 +56,11 @@ class Nota
         } else {
             return
                 $db->query(
-                    query: "SELECT * FROM notas WHERE usuario_id = :usuario_id",
+                    query: 'SELECT * FROM notas WHERE usuario_id = :usuario_id',
                     class: self::class,
                     params: ['usuario_id' => auth()->id]
                 )->fetchAll();
-        };
+        }
     }
 
     public static function create($data)
@@ -52,11 +68,11 @@ class Nota
         $DB = new Database(config('database'));
 
         $DB->query(
-            query: "INSERT INTO notas (usuario_id, titulo, nota, data_criacao, data_atualizacao) 
-            VALUES (:usuario_id, :titulo, :nota, :data_criacao, :data_atualizacao)",
+            query: 'INSERT INTO notas (usuario_id, titulo, nota, data_criacao, data_atualizacao) 
+            VALUES (:usuario_id, :titulo, :nota, :data_criacao, :data_atualizacao)',
             params: array_merge($data, [
                 'data_criacao' => date('Y-m-d H:i:s'),
-                'data_atualizacao' => date('Y-m-d H:i:s')
+                'data_atualizacao' => date('Y-m-d H:i:s'),
             ])
         );
     }
@@ -65,10 +81,10 @@ class Nota
     {
         $db = new Database(config('database'));
 
-        $set = "titulo = :titulo";
+        $set = 'titulo = :titulo';
 
         if ($nota) {
-            $set .= ", nota = :nota";
+            $set .= ', nota = :nota';
         }
 
         $db->query(
@@ -85,9 +101,9 @@ class Nota
         $db = new Database(config('database'));
 
         $db->query(
-            query: "DELETE FROM notas WHERE id = :id",
+            query: 'DELETE FROM notas WHERE id = :id',
             params: [
-                'id' => $id
+                'id' => $id,
             ]
         );
     }

@@ -16,9 +16,9 @@ class RegisterController
     {
 
         $validacao = Validacao::validar([
-            'nome' =>  ['required'],
+            'nome' => ['required'],
             'email' => ['required', 'email', 'confirmed', 'unique:usuarios'],
-            'senha' => ['required', 'min:8', 'max:30', 'strong']
+            'senha' => ['required', 'min:8', 'max:30', 'strong'],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
@@ -28,7 +28,7 @@ class RegisterController
         $DB = new Database(config('database'));
 
         $DB->query(
-            query: "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)",
+            query: 'INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)',
             params: [
                 'nome' => request()->post('nome'),
                 'email' => request()->post('senha'),
@@ -36,7 +36,8 @@ class RegisterController
             ]
         );
 
-        flash()->push('mensagem', "Registrado com sucesso!");
-        return redirect("/registrar");
+        flash()->push('mensagem', 'Registrado com sucesso!');
+
+        return redirect('/registrar');
     }
 }

@@ -2,9 +2,8 @@
 
 namespace App\Controllers\Notas;
 
-use Core\Database;
-use Core\Validacao;
 use App\Models\Nota;
+use Core\Validacao;
 
 class CriarController
 {
@@ -17,7 +16,7 @@ class CriarController
     {
         $validacao = Validacao::validar([
             'titulo' => ['required', 'min:3', 'max:255'],
-            'nota' => ['required']
+            'nota' => ['required'],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
@@ -31,7 +30,8 @@ class CriarController
 
         ]);
 
-        flash()->push('mensagem', "Nota registrada com sucesso!");
-        return redirect("/notas/criar");
+        flash()->push('mensagem', 'Nota registrada com sucesso!');
+
+        return redirect('/notas/criar');
     }
 }

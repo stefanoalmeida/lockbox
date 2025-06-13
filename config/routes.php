@@ -1,25 +1,24 @@
 <?php
 
-use Core\Route;
-use App\Middlewares\AuthMiddleware;
 use App\Controllers\IndexController;
 use App\Controllers\LoginController;
-use App\Middlewares\GuestMiddleware;
 use App\Controllers\LogoutController;
-use App\Controllers\RegisterController;
+use App\Controllers\Notas\AtualizarController;
 use App\Controllers\Notas\CriarController;
 use App\Controllers\Notas\DeletarController;
-use App\Controllers\Notas\AtualizarController;
-use App\Controllers\Notas\VisualizarController;
 use App\Controllers\Notas\IndexController as NotasIndexController;
+use App\Controllers\Notas\VisualizarController;
+use App\Controllers\RegisterController;
+use App\Middlewares\AuthMiddleware;
+use App\Middlewares\GuestMiddleware;
+use Core\Route;
 
-(new Route())
+(new Route)
     ->get('/', IndexController::class, GuestMiddleware::class)
     ->get('/login', [LoginController::class, 'index'], GuestMiddleware::class)
     ->post('/login', [LoginController::class, 'login'], GuestMiddleware::class)
     ->get('/registrar', [RegisterController::class, 'index'], GuestMiddleware::class)
     ->post('/registrar', [RegisterController::class, 'register'], GuestMiddleware::class)
-
 
     ->get('/logout', LogoutController::class, AuthMiddleware::class)
     ->get('/notas', NotasIndexController::class, AuthMiddleware::class)

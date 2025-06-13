@@ -26,10 +26,10 @@
                         class="input bg-gray-200 text-gray-600"
                         placeholder="Email"
                         value="<?= old('email') ?>" />
-                    <?php if (isset($validacoes['email'])) : ?>
+                    <?php if (isset($validacoes['email'])) { ?>
                         <div class="label text-xs text-error"><?= $validacoes['email'][0] ?>
                         </div>
-                    <?php endif ?>
+                    <?php } ?>
 
                     <label class="label">Password</label>
                     <input
@@ -37,9 +37,9 @@
                         name="senha"
                         class="input bg-gray-200 text-gray-600"
                         placeholder="Digite sua senha" />
-                    <?php if (isset($validacoes['senha'])) : ?>
+                    <?php if (isset($validacoes['senha'])) { ?>
                         <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
-                    <?php endif ?>
+                    <?php } ?>
                     <button class="btn btn-neutral mt-4">Login</button>
                     <a href="/registrar" class="btn btn-link">Registrar</a>
                 </fieldset>

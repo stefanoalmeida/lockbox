@@ -16,6 +16,6 @@ class Session
 
     public function forget($chave)
     {
-        unset ($_SESSION[$chave]);
+        unset($_SESSION[$chave]);
     }
 }
