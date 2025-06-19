@@ -19,7 +19,7 @@ class RegisterController
             'nome' => ['required'],
             'email' => ['required', 'email', 'confirmed', 'unique:usuarios'],
             'senha' => ['required', 'min:8', 'max:30', 'strong'],
-        ], request()->all());
+        ], $_POST);
 
         if ($validacao->naoPassou()) {
             return view('registrar', template: 'guest');
@@ -30,9 +30,9 @@ class RegisterController
         $DB->query(
             query: 'INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)',
             params: [
-                'nome' => request()->post('nome'),
-                'email' => request()->post('senha'),
-                'senha' => password_hash(request()->post('senha'), PASSWORD_DEFAULT),
+                'nome' => $_POST['nome'],
+                'email' => $_POST['email'],
+                'senha' => password_hash($_POST['senha'], PASSWORD_DEFAULT),
             ]
         );
 
